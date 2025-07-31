@@ -71,7 +71,7 @@ function toggleHat()
         ClearPedProp(ped, 0)
         debugPrint("Hat removed.")
     elseif savedHat then
-        SetPedPropIndex(ped, 0, savedHat.drawable, savedHat.texture, 2)
+        SetPedPropIndex(ped, 0, savedHat.drawable, savedHat.texture, true)
         savedHat = nil
         debugPrint("Hat restored.")
     else
@@ -99,7 +99,7 @@ function toggleGlasses()
         ClearPedProp(ped, 1)
         debugPrint("Glasses removed.")
     elseif savedGlasses then
-        SetPedPropIndex(ped, 1, savedGlasses.drawable, savedGlasses.texture, 2)
+        SetPedPropIndex(ped, 1, savedGlasses.drawable, savedGlasses.texture, true)
         savedGlasses = nil
         debugPrint("Glasses restored.")
     else
@@ -127,7 +127,7 @@ function toggleEar()
         ClearPedProp(ped, 2)
         debugPrint("Ear removed.")
     elseif savedEar then
-        SetPedPropIndex(ped, 2, savedEar.drawable, savedEar.texture, 2)
+        SetPedPropIndex(ped, 2, savedEar.drawable, savedEar.texture, true)
         savedEar = nil
         debugPrint("Ear restored.")
     else
@@ -155,7 +155,7 @@ function toggleWatch()
         ClearPedProp(ped, 6)
         debugPrint("Watch removed.")
     elseif savedWatch then
-        SetPedPropIndex(ped, 6, savedWatch.drawable, savedWatch.texture, 2)
+        SetPedPropIndex(ped, 6, savedWatch.drawable, savedWatch.texture, true)
         savedWatch = nil
         debugPrint("Watch restored.")
     else
@@ -183,7 +183,7 @@ function toggleBracelet()
         ClearPedProp(ped, 7)
         debugPrint("Bracelet removed.")
     elseif savedBracelet then
-        SetPedPropIndex(ped, 7, savedBracelet.drawable, savedBracelet.texture, 2)
+        SetPedPropIndex(ped, 7, savedBracelet.drawable, savedBracelet.texture, true)
         savedBracelet = nil
         debugPrint("Bracelet restored.")
     else
