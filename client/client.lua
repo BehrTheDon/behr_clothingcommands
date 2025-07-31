@@ -17,7 +17,7 @@ local savedBracelet = nil
 
 function debugPrint(message)
     if Config.Debug then
-        print("[Behr_ClothesToggle] " .. message)
+        print("[Behr_ClothingCommands] " .. message)
     end
 end
 

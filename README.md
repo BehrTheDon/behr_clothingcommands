@@ -1,4 +1,4 @@
-# 🎒 behr_clothestoggle
+# 🎒 behr_clothingcommands
 
 A lightweight and modular clothing/prop toggle script for FiveM, built for freemode peds. Easily remove or reapply items like shirts, hats, glasses, backpacks, and more — all with simple commands.
 
