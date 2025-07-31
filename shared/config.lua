@@ -63,3 +63,4 @@ Config.NoBackpack = 0
 
 -- Developer Options
 Config.Debug = true -- Set to true to enable debug messages in the f8 console
+Config.VersionCheckEnabled = true -- Enable version check by default
