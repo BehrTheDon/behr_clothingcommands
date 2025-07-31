@@ -121,9 +121,9 @@ When `VersionCheckEnabled` is set to `true`, the script will print a message in 
 
 ## 🙌 Credits
 
-**Script by:** [Behr Development](https://github.com/BehrTheDon)
-**Animation:** Rockstar default assets
-**Framework:** Standalone – compatible with most servers
+**Script by:** [Behr Development](https://github.com/BehrTheDon)  
+**Animation:** Rockstar default assets  
+**Framework:** Standalone – compatible with most servers  
 
 ---
 
