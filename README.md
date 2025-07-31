@@ -129,11 +129,11 @@ When `VersionCheckEnabled` is set to `true`, the script will print a message in 
 
 ## 📅 Roadmap
 
-✅ Base version complete                            ✅
-📤 Add exports for external script calls            ✅
-🚧 Refactor repeated logic into shared handlers
-🖥️ Optional UI menu (F9 or radial)
-🧪 Preset outfits & prop sync (future)
+✅ Base version complete                            ✅  
+📤 Add exports for external script calls            ✅  
+🚧 Refactor repeated logic into shared handlers  
+🖥️ Optional UI menu (F9 or radial)  
+🧪 Preset outfits & prop sync (future)  
 
 ---
 
