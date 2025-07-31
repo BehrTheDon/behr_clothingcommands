@@ -137,4 +137,12 @@ When `VersionCheckEnabled` is set to `true`, the script will print a message in 
 
 ---
 
+## 📚 Documentation
+
+Full setup instructions, configuration options, and usage examples are available on our GitBook:
+
+👉 [**behr\_clothingcommands Documentation**](https://behr-development.gitbook.io/behr-development-docs/scripts/clothingcommands)
+
+---
+
 ### 💬 For feedback, bugs, or contributions — open an issue, fork the repo, or join our [Discord](https://discord.gg/wA7W5dUMG6)!
