@@ -61,6 +61,11 @@ Config.BackpackCommandEnabled = true
 Config.BackpackCommand = "backpack"
 Config.NoBackpack = 0
 
+-- Animation Options
+Config.AnimDict = "clothingtie"
+Config.AnimName = "try_tie_positive_a"
+
+
 -- Developer Options
 Config.Debug = true -- Set to true to enable debug messages in the f8 console
 Config.VersionCheckEnabled = true -- Enable version check by default

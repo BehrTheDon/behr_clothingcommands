@@ -25,10 +25,10 @@ end
 function playClothingAnimation()
 
     local ped = PlayerPedId()
-    local animDict = "clothingtie"
-    local animName = "try_tie_positive_a"
+    local animDict = Config.AnimDict
+    local animName = Config.AnimName
 
-    debugPrint("Starting shirt animation...")
+    debugPrint("Starting Clothing animation...")
 
     RequestAnimDict(animDict)
     local timeout = GetGameTimer() + 1000 -- 1 second max timeout
@@ -44,10 +44,10 @@ function playClothingAnimation()
     debugPrint("Animation dict loaded: " .. animDict)
 
     TaskPlayAnim(ped, animDict, animName, 8.0, -8.0, 600, 48, 0, false, false, false)
-    debugPrint("Playing shirt animation: " .. animName)
+    debugPrint("Playing Clothing animation: " .. animName)
 
-    Wait(600) -- Wait for animation to finish before toggling shirt
-    debugPrint("Shirt animation complete.")
+    Wait(600) -- Wait for animation to finish before toggling Clothing
+    debugPrint("Clothing animation complete.")
 end
 
 
