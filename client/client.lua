@@ -193,54 +193,6 @@ end
 
 
 
-function toggleDecal()
-    local ped = PlayerPedId()
-    local pedModel = GetEntityModel(ped)
-
-    if pedModel ~= GetHashKey("mp_m_freemode_01") and pedModel ~= GetHashKey("mp_f_freemode_01") then return end
-
-    local currentDrawable = GetPedDrawableVariation(ped, 10)
-    local currentTexture = GetPedTextureVariation(ped, 10)
-
-    playClothingAnimation()
-
-
-    if currentDrawable ~= Config.NoDecal then
-        savedDecal = {
-            drawable = currentDrawable,
-            texture = currentTexture
-        }
-        SetPedComponentVariation(ped, 10, Config.NoDecal, 0, 2)
-    elseif savedDecal then
-        SetPedComponentVariation(ped, 10, savedDecal.drawable, savedDecal.texture, 2)
-        savedDecal = nil
-    end
-end
-
-function toggleVest()
-    local ped = PlayerPedId()
-    local pedModel = GetEntityModel(ped)
-
-    if pedModel ~= GetHashKey("mp_m_freemode_01") and pedModel ~= GetHashKey("mp_f_freemode_01") then return end
-
-    local currentDrawable = GetPedDrawableVariation(ped, 9)
-    local currentTexture = GetPedTextureVariation(ped, 9)
-
-    playClothingAnimation()
-
-
-    if currentDrawable ~= Config.NoVest then
-        savedVest = {
-            drawable = currentDrawable,
-            texture = currentTexture
-        }
-        SetPedComponentVariation(ped, 9, Config.NoVest, 0, 2)
-    elseif savedVest then
-        SetPedComponentVariation(ped, 9, savedVest.drawable, savedVest.texture, 2)
-        savedVest = nil
-    end
-end
-
 function toggleMask()
     local ped = PlayerPedId()
     local pedModel = GetEntityModel(ped)
@@ -253,15 +205,28 @@ function toggleMask()
     playClothingAnimation()
 
 
-    if currentDrawable ~= Config.NoMask then
+    if currentDrawable ~= Config.NoMaskMale and currentDrawable ~= Config.NoMaskFemale then
         savedMask = {
             drawable = currentDrawable,
             texture = currentTexture
         }
-        SetPedComponentVariation(ped, 1, Config.NoMask, 0, 2)
+
+        debugPrint("Saving current mask state: " .. tostring(savedMask.drawable) .. ", " .. tostring(savedMask.texture))
+        
+        if pedModel == GetHashKey("mp_m_freemode_01") then
+            SetPedComponentVariation(ped, 1, Config.NoMaskMale, 0, 2)
+
+            debugPrint("Set mask for male model.")
+        elseif pedModel == GetHashKey("mp_f_freemode_01") then
+            SetPedComponentVariation(ped, 1, Config.NoMaskFemale, 0, 2)
+
+            debugPrint("Set mask for female model.")
+        end
     elseif savedMask then
         SetPedComponentVariation(ped, 1, savedMask.drawable, savedMask.texture, 2)
         savedMask = nil
+
+        debugPrint("Mask restored.")
     end
 end
 
@@ -277,15 +242,28 @@ function toggleHair()
     playClothingAnimation()
 
 
-    if currentDrawable ~= Config.NoHair then
+    if currentDrawable ~= Config.NoHairMale and currentDrawable ~= Config.NoHairFemale then
         savedHair = {
             drawable = currentDrawable,
             texture = currentTexture
         }
-        SetPedComponentVariation(ped, 2, Config.NoHair, 0, 2)
+
+        debugPrint("Saving current hair state: " .. tostring(savedHair.drawable) .. ", " .. tostring(savedHair.texture))
+        
+        if pedModel == GetHashKey("mp_m_freemode_01") then
+            SetPedComponentVariation(ped, 2, Config.NoHairMale, 0, 2)
+
+            debugPrint("Set hair for male model.")
+        elseif pedModel == GetHashKey("mp_f_freemode_01") then
+            SetPedComponentVariation(ped, 2, Config.NoHairFemale, 0, 2)
+
+            debugPrint("Set hair for female model.")
+        end
     elseif savedHair then
         SetPedComponentVariation(ped, 2, savedHair.drawable, savedHair.texture, 2)
         savedHair = nil
+
+        debugPrint("Hair restored.")
     end
 end
 
@@ -301,15 +279,28 @@ function toggleArms()
     playClothingAnimation()
 
 
-    if currentDrawable ~= Config.NoArms then
+    if currentDrawable ~= Config.NoArmsMale and currentDrawable ~= Config.NoArmsFemale then
         savedArms = {
             drawable = currentDrawable,
             texture = currentTexture
         }
-        SetPedComponentVariation(ped, 3, Config.NoArms, 0, 2)
+
+        debugPrint("Saving current arms state: " .. tostring(savedArms.drawable) .. ", " .. tostring(savedArms.texture))
+        
+        if pedModel == GetHashKey("mp_m_freemode_01") then
+            SetPedComponentVariation(ped, 3, Config.NoArmsMale, 0, 2)
+
+            debugPrint("Set arms for male model.")
+        elseif pedModel == GetHashKey("mp_f_freemode_01") then
+            SetPedComponentVariation(ped, 3, Config.NoArmsFemale, 0, 2)
+
+            debugPrint("Set arms for female model.")
+        end
     elseif savedArms then
         SetPedComponentVariation(ped, 3, savedArms.drawable, savedArms.texture, 2)
         savedArms = nil
+
+        debugPrint("Arms restored.")
     end
 end
 
@@ -325,15 +316,28 @@ function togglePants()
     playClothingAnimation()
 
 
-    if currentDrawable ~= Config.NoPants then
+    if currentDrawable ~= Config.NoPantsMale and currentDrawable ~= Config.NoPantsFemale then
         savedPants = {
             drawable = currentDrawable,
             texture = currentTexture
         }
-        SetPedComponentVariation(ped, 4, Config.NoPants, 0, 2)
+
+        debugPrint("Saving current pants state: " .. tostring(savedPants.drawable) .. ", " .. tostring(savedPants.texture))
+        
+        if pedModel == GetHashKey("mp_m_freemode_01") then
+            SetPedComponentVariation(ped, 4, Config.NoPantsMale, 0, 2)
+
+            debugPrint("Set pants for male model.")
+        elseif pedModel == GetHashKey("mp_f_freemode_01") then
+            SetPedComponentVariation(ped, 4, Config.NoPantsFemale, 0, 2)
+
+            debugPrint("Set pants for female model.")
+        end
     elseif savedPants then
         SetPedComponentVariation(ped, 4, savedPants.drawable, savedPants.texture, 2)
         savedPants = nil
+
+        debugPrint("Pants restored.")
     end
 end
 
@@ -349,15 +353,28 @@ function toggleBackpack()
     playClothingAnimation()
 
 
-    if currentDrawable ~= Config.NoBackpack then
+    if currentDrawable ~= Config.NoBackpackMale and currentDrawable ~= Config.NoBackpackFemale then
         savedBackpack = {
             drawable = currentDrawable,
             texture = currentTexture
         }
-        SetPedComponentVariation(ped, 5, Config.NoBackpack, 0, 2)
+
+        debugPrint("Saving current backpack state: " .. tostring(savedBackpack.drawable) .. ", " .. tostring(savedBackpack.texture))
+
+        if pedModel == GetHashKey("mp_m_freemode_01") then
+            SetPedComponentVariation(ped, 5, Config.NoBackpackMale, 0, 2)
+
+            debugPrint("Set backpack for male model.")
+        elseif pedModel == GetHashKey("mp_f_freemode_01") then
+            SetPedComponentVariation(ped, 5, Config.NoBackpackFemale, 0, 2)
+
+            debugPrint("Set backpack for female model.")
+        end
     elseif savedBackpack then
         SetPedComponentVariation(ped, 5, savedBackpack.drawable, savedBackpack.texture, 2)
         savedBackpack = nil
+
+        debugPrint("Backpack restored.")
     end
 end
 
@@ -373,15 +390,28 @@ function toggleShoes()
     playClothingAnimation()
 
 
-    if currentDrawable ~= Config.NoShoes then
+    if currentDrawable ~= Config.NoShoesMale and currentDrawable ~= Config.NoShoesFemale then
         savedShoes = {
             drawable = currentDrawable,
             texture = currentTexture
         }
-        SetPedComponentVariation(ped, 6, Config.NoShoes, 0, 2)
+
+        debugPrint("Saving current shoes state: " .. tostring(savedShoes.drawable) .. ", " .. tostring(savedShoes.texture))
+        
+        if pedModel == GetHashKey("mp_m_freemode_01") then
+            SetPedComponentVariation(ped, 6, Config.NoShoesMale, 0, 2)
+
+            debugPrint("Set shoes for male model.")
+        elseif pedModel == GetHashKey("mp_f_freemode_01") then
+            SetPedComponentVariation(ped, 6, Config.NoShoesFemale, 0, 2)
+
+            debugPrint("Set shoes for female model.")
+        end
     elseif savedShoes then
         SetPedComponentVariation(ped, 6, savedShoes.drawable, savedShoes.texture, 2)
         savedShoes = nil
+
+        debugPrint("Shoes restored.")
     end
 end
 
@@ -397,15 +427,28 @@ function toggleChain()
     playClothingAnimation()
 
 
-    if currentDrawable ~= Config.NoChain then
+    if currentDrawable ~= Config.NoChainMale and currentDrawable ~= Config.NoChainFemale then
         savedChain = {
             drawable = currentDrawable,
             texture = currentTexture
         }
-        SetPedComponentVariation(ped, 7, Config.NoChain, 0, 2)
+
+        debugPrint("Saving current chain state: " .. tostring(savedChain.drawable) .. ", " .. tostring(savedChain.texture))
+        
+        if pedModel == GetHashKey("mp_m_freemode_01") then
+            SetPedComponentVariation(ped, 7, Config.NoChainMale, 0, 2)
+
+            debugPrint("Set chain for male model.")
+        elseif pedModel == GetHashKey("mp_f_freemode_01") then
+            SetPedComponentVariation(ped, 7, Config.NoChainFemale, 0, 2)
+
+            debugPrint("Set chain for female model.")
+        end
     elseif savedChain then
         SetPedComponentVariation(ped, 7, savedChain.drawable, savedChain.texture, 2)
         savedChain = nil
+
+        debugPrint("Chain restored.")
     end
 end
 
@@ -421,15 +464,93 @@ function toggleShirt()
     playClothingAnimation()
 
 
-    if currentDrawable ~= Config.NoShirt then
+    if currentDrawable ~= Config.NoShirtMale and currentDrawable ~= Config.NoShirtFemale then
         savedShirt = {
             drawable = currentDrawable,
             texture = currentTexture
         }
-        SetPedComponentVariation(ped, 8, Config.NoShirt, 0, 2)
+
+        debugPrint("Saving current shirt state: " .. tostring(savedShirt.drawable) .. ", " .. tostring(savedShirt.texture))
+        
+        if pedModel == GetHashKey("mp_m_freemode_01") then
+            SetPedComponentVariation(ped, 8, Config.NoShirtMale, 0, 2)
+
+            debugPrint("Set shirt for male model.")
+        elseif pedModel == GetHashKey("mp_f_freemode_01") then
+            SetPedComponentVariation(ped, 8, Config.NoShirtFemale, 0, 2)
+
+            debugPrint("Set shirt for female model.")
+        end
     elseif savedShirt then
         SetPedComponentVariation(ped, 8, savedShirt.drawable, savedShirt.texture, 2)
         savedShirt = nil
+
+        debugPrint("Shirt restored.")
+    end
+end
+
+function toggleVest()
+    local ped = PlayerPedId()
+    local pedModel = GetEntityModel(ped)
+
+    if pedModel ~= GetHashKey("mp_m_freemode_01") and pedModel ~= GetHashKey("mp_f_freemode_01") then return end
+
+    local currentDrawable = GetPedDrawableVariation(ped, 9)
+    local currentTexture = GetPedTextureVariation(ped, 9)
+
+    playClothingAnimation()
+
+
+    if currentDrawable ~= Config.NoVestMale and currentDrawable ~= Config.NoVestFemale then
+        savedVest = {
+            drawable = currentDrawable,
+            texture = currentTexture
+        }
+
+        debugPrint("Saving current vest state: " .. tostring(savedVest.drawable) .. ", " .. tostring(savedVest.texture))
+
+        if pedModel == GetHashKey("mp_m_freemode_01") then
+            SetPedComponentVariation(ped, 9, Config.NoVestMale, 0, 2)
+
+            debugPrint("Set vest for male model.")
+        elseif pedModel == GetHashKey("mp_f_freemode_01") then
+            SetPedComponentVariation(ped, 9, Config.NoVestFemale, 0, 2)
+
+            debugPrint("Set vest for female model.")
+        end
+    elseif savedVest then
+        SetPedComponentVariation(ped, 9, savedVest.drawable, savedVest.texture, 2)
+        savedVest = nil
+        
+        debugPrint("Vest restored.")
+    end
+end
+
+function toggleDecal()
+    local ped = PlayerPedId()
+    local pedModel = GetEntityModel(ped)
+
+    if pedModel ~= GetHashKey("mp_m_freemode_01") and pedModel ~= GetHashKey("mp_f_freemode_01") then return end
+
+    local currentDrawable = GetPedDrawableVariation(ped, 10)
+    local currentTexture = GetPedTextureVariation(ped, 10)
+
+    playClothingAnimation()
+
+
+    if currentDrawable ~= Config.NoDecalMale and currentDrawable ~= Config.NoDecalFemale then
+        savedDecal = {
+            drawable = currentDrawable,
+            texture = currentTexture
+        }
+        if pedModel == GetHashKey("mp_m_freemode_01") then
+            SetPedComponentVariation(ped, 10, Config.NoDecalMale, 0, 2)
+        elseif pedModel == GetHashKey("mp_f_freemode_01") then
+            SetPedComponentVariation(ped, 10, Config.NoDecalFemale, 0, 2)
+        end
+    elseif savedDecal then
+        SetPedComponentVariation(ped, 10, savedDecal.drawable, savedDecal.texture, 2)
+        savedDecal = nil
     end
 end
 
@@ -445,15 +566,28 @@ function toggleJacket()
     playClothingAnimation()
 
 
-    if currentDrawable ~= Config.NoJacket then
+    if currentDrawable ~= Config.NoJacketMale and currentDrawable ~= Config.NoJacketFemale then
         savedJacket = {
             drawable = currentDrawable,
             texture = currentTexture
         }
-        SetPedComponentVariation(ped, 11, Config.NoJacket, 0, 2)
+
+        debugPrint("Saving current jacket state: " .. tostring(savedJacket.drawable) .. ", " .. tostring(savedJacket.texture))
+
+        if pedModel == GetHashKey("mp_m_freemode_01") then
+            SetPedComponentVariation(ped, 11, Config.NoJacketMale, 0, 2)
+
+            debugPrint("Set jacket for male model.")
+        elseif pedModel == GetHashKey("mp_f_freemode_01") then
+            SetPedComponentVariation(ped, 11, Config.NoJacketFemale, 0, 2)
+
+            debugPrint("Set jacket for female model.")
+        end
     elseif savedJacket then
         SetPedComponentVariation(ped, 11, savedJacket.drawable, savedJacket.texture, 2)
         savedJacket = nil
+
+        debugPrint("Jacket restored.")
     end
 end
 

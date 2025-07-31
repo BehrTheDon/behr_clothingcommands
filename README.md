@@ -37,7 +37,8 @@ All item slots are customizable in `config.lua`.
 ```lua
 Config.ShirtCommandEnabled = true
 Config.ShirtCommand = "shirt"
-Config.NoShirt = 15 -- Drawable index for "no shirt"
+Config.NoShirtMale = 15 -- Drawable Male index for "no shirt"
+Config.NoShirtFemale = 15 -- Drawable Female index for "no shirt"
 ```
 
 🧠 Tip: Use a clothing menu to preview drawables for your ped before setting `NoX` values.

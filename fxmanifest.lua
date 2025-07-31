@@ -4,7 +4,7 @@ game 'gta5'
 name "behr_clothingcommands"
 description "Commands to toggle clothing"
 author "Behr"
-version '1.2.2'
+version '1.2.5'
 
 lua54 'yes'
 
