@@ -39,7 +39,7 @@ Config.ShirtCommand = "shirt"
 Config.NoShirt = 15 -- Drawable index for "no shirt"
 ````
 
-🧠 Tip: Use `/clothing` or a clothing menu to preview drawables for your ped before setting `NoX` values.
+🧠 Tip: Use a clothing menu to preview drawables for your ped before setting `NoX` values.
 
 ---
 
@@ -60,9 +60,9 @@ Here are the default toggle commands (can be changed in config):
 | /mask     | Mask              |
 | /vest     | Vest              |
 | /shoes    | Shoes             |
-| /shirt    | Shirt             |
-| /arms     | Arms (undershirt) |
-| /jacket   | Jacket (torso)    |
+| /shirt    | Shirt(undershirt) |
+| /arms     | Arms (torso)      |
+| /jacket   | Jacket            |
 | /pants    | Pants             |
 | /backpack | Backpack          |
 
@@ -91,19 +91,19 @@ Enable this to log detailed messages in F8 for troubleshooting.
 
 ## 🙌 Credits
 
-**Script by:** [Behr Development](https://discord.gg/wA7W5dUMG6)
-**Animation:** Rockstar default assets
-**Framework:** Standalone – compatible with most servers
+**Script by:** [Behr Development](https://discord.gg/wA7W5dUMG6)  
+**Animation:** Rockstar default assets  
+**Framework:** Standalone – compatible with most servers  
 
 ---
 
 ## 📅 Roadmap
 
-✅ Base version complete
-🚧 Refactor repeated logic into shared handlers
-🖥️ Optional UI menu (F9 or radial)
-📤 Add exports for external script calls
-🧪 Preset outfits & prop sync (future)
+✅ Base version complete  
+🚧 Refactor repeated logic into shared handlers  
+🖥️ Optional UI menu (F9 or radial)  
+📤 Add exports for external script calls  
+🧪 Preset outfits & prop sync (future)  
 
 ---
 
