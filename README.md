@@ -11,7 +11,8 @@ A lightweight and modular clothing/prop toggle script for FiveM, built for freem
 - 💾 Remembers and restores original items
 - 🎞️ Built-in clothing animation on toggle
 - 🧰 Configurable toggle slots & commands
-- ⚙️ Developer debug logging
+- 📤 Export functions for modular script use
+- ⚙️ Developer debug logging and version checking
 - 🧱 Built for modular expansion
 
 ---
@@ -20,11 +21,11 @@ A lightweight and modular clothing/prop toggle script for FiveM, built for freem
 
 1. **Drag and drop** the folder into your `resources/` directory  
 2. Add this line to your `server.cfg`:
-```
 
-ensure behr\_clothingcommands
-
+```cfg
+ensure behr_clothingcommands
 ````
+
 3. Open `config.lua` to configure the available commands and slot settings.
 
 ---
@@ -37,7 +38,7 @@ All item slots are customizable in `config.lua`.
 Config.ShirtCommandEnabled = true
 Config.ShirtCommand = "shirt"
 Config.NoShirt = 15 -- Drawable index for "no shirt"
-````
+```
 
 🧠 Tip: Use a clothing menu to preview drawables for your ped before setting `NoX` values.
 
@@ -47,36 +48,64 @@ Config.NoShirt = 15 -- Drawable index for "no shirt"
 
 Here are the default toggle commands (can be changed in config):
 
-| Command   | Item Slot         |
-| --------- | ----------------- |
-| /hat      | Hat               |
-| /glasses  | Glasses           |
-| /ear      | Earrings          |
-| /watch    | Watch             |
-| /bracelet | Bracelet          |
-| /hair     | Hair              |
-| /decal    | Decals/Tattoos    |
-| /chain    | Chain             |
-| /mask     | Mask              |
-| /vest     | Vest              |
-| /shoes    | Shoes             |
-| /shirt    | Shirt(undershirt) |
-| /arms     | Arms (torso)      |
-| /jacket   | Jacket            |
-| /pants    | Pants             |
-| /backpack | Backpack          |
+| Command   | Item Slot          |
+| --------- | ------------------ |
+| /hat      | Hat                |
+| /glasses  | Glasses            |
+| /ear      | Earrings           |
+| /watch    | Watch              |
+| /bracelet | Bracelet           |
+| /hair     | Hair               |
+| /decal    | Decals/Tattoos     |
+| /chain    | Chain              |
+| /mask     | Mask               |
+| /vest     | Vest               |
+| /shoes    | Shoes              |
+| /shirt    | Shirt (undershirt) |
+| /arms     | Arms (torso)       |
+| /jacket   | Jacket             |
+| /pants    | Pants              |
+| /backpack | Backpack           |
 
 ✅ Only works for freemode male/female peds (`mp_m_freemode_01`, `mp_f_freemode_01`)
 
 ---
 
-## 🔧 Developer Settings
+## 📤 Exports
+
+Use these in other scripts to toggle clothing directly:
 
 ```lua
-Config.Debug = true
+exports['behr_clothingcommands']:toggleShirt()
+exports['behr_clothingcommands']:toggleJacket()
+exports['behr_clothingcommands']:togglePants()
+exports['behr_clothingcommands']:toggleShoes()
+exports['behr_clothingcommands']:toggleHat()
+exports['behr_clothingcommands']:toggleGlasses()
+exports['behr_clothingcommands']:toggleBackpack()
+exports['behr_clothingcommands']:toggleWatch()
+exports['behr_clothingcommands']:toggleBracelet()
+exports['behr_clothingcommands']:toggleChain()
+exports['behr_clothingcommands']:toggleMask()
+exports['behr_clothingcommands']:toggleHair()
+exports['behr_clothingcommands']:toggleArms()
+exports['behr_clothingcommands']:toggleVest()
+exports['behr_clothingcommands']:toggleDecal()
+exports['behr_clothingcommands']:toggleEar()
 ```
 
-Enable this to log detailed messages in F8 for troubleshooting.
+---
+
+## 🔧 Developer Settings
+
+Inside `config.lua`:
+
+```lua
+Config.Debug = true               -- Enable debug logs in F8
+Config.VersionCheckEnabled = true -- Automatically checks for the latest version on GitHub
+```
+
+When `VersionCheckEnabled` is set to `true`, the script will print a message in your server console if a new version is available.
 
 ---
 
@@ -85,26 +114,27 @@ Enable this to log detailed messages in F8 for troubleshooting.
 * Supports **toggle + restore** logic per item
 * Includes animation when clothing is changed
 * Meant for use with RP, radial menus, keybinds, and more
-* Future plans include a UI menu and export support (see roadmap)
+* Fully standalone – works with any framework
+* Future updates will expand UI, outfit presets, and integration support
 
 ---
 
 ## 🙌 Credits
 
-**Script by:** [Behr Development](https://discord.gg/wA7W5dUMG6)  
-**Animation:** Rockstar default assets  
-**Framework:** Standalone – compatible with most servers  
+**Script by:** [Behr Development](https://github.com/BehrTheDon)
+**Animation:** Rockstar default assets
+**Framework:** Standalone – compatible with most servers
 
 ---
 
 ## 📅 Roadmap
 
-✅ Base version complete  
-🚧 Refactor repeated logic into shared handlers  
-🖥️ Optional UI menu (F9 or radial)  
-📤 Add exports for external script calls  
-🧪 Preset outfits & prop sync (future)  
+✅ Base version complete                            ✅
+📤 Add exports for external script calls            ✅
+🚧 Refactor repeated logic into shared handlers
+🖥️ Optional UI menu (F9 or radial)
+🧪 Preset outfits & prop sync (future)
 
 ---
 
-### 💬 For feedback, bugs, or contributions — open an issue or fork the repo or join our discord!!
+### 💬 For feedback, bugs, or contributions — open an issue, fork the repo, or join our [Discord](https://discord.gg/wA7W5dUMG6)!
