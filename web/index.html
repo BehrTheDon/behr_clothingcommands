@@ -1,34 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clothing Menu</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="container" style="display: none;">
-        <button class="clothing-button" data-slot="mask">Toggle Mask</button>
-        <button class="clothing-button" data-slot="hair">Toggle Hair</button>
-        <button class="clothing-button" data-slot="arms">Toggle Arms</button>    
-        <button class="clothing-button" data-slot="pants">Toggle Pants</button>
-        <button class="clothing-button" data-slot="backpack">Toggle Backpack</button>
-        <button class="clothing-button" data-slot="shoes">Toggle Shoes</button>
-        <button class="clothing-button" data-slot="chain">Toggle Chain</button>
-        <button class="clothing-button" data-slot="shirt">Toggle Shirt</button>
-        <button class="clothing-button" data-slot="vest">Toggle Vest</button>
-        <button class="clothing-button" data-slot="decals">Toggle Decals</button>
-        <button class="clothing-button" data-slot="jacket">Toggle Jacket</button>
-        <button class="clothing-button" data-slot="top">Toggle Top</button>
+  <div class="overlay" style="display: none;">
+    <div class="menu">
+        <div class="close-btn" id="closeBtn">✕</div>
+        <h2>👕 Clothing Menu</h2>
 
-        <button class="clothing-button" data-slot="hat">Toggle Hat</button>    
-        <button class="clothing-button" data-slot="glasses">Toggle Glasses</button>
-        <button class="clothing-button" data-slot="ear">Toggle Ears</button>
-        <button class="clothing-button" data-slot="watch">Toggle Watches</button>
-        <button class="clothing-button" data-slot="bracelet">Toggle Bracelets</button>
-        <div id="box"></div>
+        <div class="section">
+        <h3>Clothing</h3>
+        <div class="button-grid">
+            <button data-slot="mask">😷 Toggle Mask</button>
+            <button data-slot="hair">💇 Toggle Hair</button>
+            <button data-slot="arms">💪 Toggle Arms</button>
+            <button data-slot="pants">👖 Toggle Pants</button>
+            <button data-slot="backpack">🎒 Toggle Bag</button>
+            <button data-slot="shoes">👟 Toggle Shoes</button>
+            <button data-slot="chain">💎 Toggle Chain</button>
+            <button data-slot="shirt">👕 Toggle Shirt</button>
+            <button data-slot="vest">🦺 Toggle Vest</button>
+            <button data-slot="decal">🎨 Toggle Decal</button>
+            <button data-slot="jacket">🧥 Toggle Jacket</button>
+            <button data-slot="top">🧍 Toggle Top</button>
+        </div>
+        </div>
+
+        <div class="section">
+        <h3>Props</h3>
+        <div class="button-grid">
+            <button data-slot="hat">🎩 Toggle Hat</button>
+            <button data-slot="glasses">🕶️ Toggle Glasses</button>
+            <button data-slot="ear">🦻 Toggle Ears</button>
+            <button data-slot="watch">⌚ Toggle Watch</button>
+            <button data-slot="bracelet">📿 Toggle Bracelet</button>
+        </div>
+        </div>
+    </div>
     </div>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

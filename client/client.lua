@@ -152,84 +152,86 @@ end
 
 -- Clothing Commands
 if Config.MaskCommandEnabled then
-    RegisterCommand("mask", function() toggleClothes(1, "mask", "NoMaskMale", "NoMaskFemale") end, false)
+    RegisterCommand(Config.MaskCommand, function() toggleClothes(1, "mask", "NoMaskMale", "NoMaskFemale") end, false)
 else
     debugPrint(Config.MaskCommand .. " command is disabled in the configuration.")
 end
 
 if Config.HairCommandEnabled then
-    RegisterCommand("hair", function() toggleClothes(2, "hair", "NoHairMale", "NoHairFemale") end, false)
+    RegisterCommand(Config.HairCommand, function() toggleClothes(2, "hair", "NoHairMale", "NoHairFemale") end, false)
 else
     debugPrint(Config.HairCommand .. " command is disabled in the configuration.")
 end
 
 if Config.ArmsCommandEnabled then
-    RegisterCommand("arms", function() toggleClothes(3, "arms", "FullBodyMale", "FullBodyFemale") end, false)
+    RegisterCommand(Config.ArmsCommand, function() toggleClothes(3, "arms", "FullBodyMale", "FullBodyFemale") end, false)
 else
     debugPrint(Config.ArmsCommand .. " command is disabled in the configuration.")
 end
 
 if Config.PantsCommandEnabled then
-    RegisterCommand("pants", function() toggleClothes(4, "pants", "NoPantsMale", "NoPantsFemale") end, false)
+    RegisterCommand(Config.PantsCommand, function() toggleClothes(4, "pants", "NoPantsMale", "NoPantsFemale") end, false)
 else
     debugPrint(Config.PantsCommand .. " command is disabled in the configuration.")
 end
 
 if Config.BackpackCommandEnabled then
-    RegisterCommand("backpack", function() toggleClothes(5, "backpack", "NoBackpackMale", "NoBackpackFemale") end, false)
+    RegisterCommand(Config.BackpackCommand, function() toggleClothes(5, "backpack", "NoBackpackMale", "NoBackpackFemale") end, false)
 else
     debugPrint(Config.BackpackCommand .. " command is disabled in the configuration.")
 end
 
 if Config.ShoesCommandEnabled then
-    RegisterCommand("shoes", function() toggleClothes(6, "shoes", "NoShoesMale", "NoShoesFemale") end, false)
+    RegisterCommand(Config.ShoesCommand, function() toggleClothes(6, "shoes", "NoShoesMale", "NoShoesFemale") end, false)
 else
     debugPrint(Config.ShoesCommand .. " command is disabled in the configuration.")
 end
 
 if Config.ChainCommandEnabled then
-    RegisterCommand("chain", function() toggleClothes(7, "chain", "NoChainMale", "NoChainFemale") end, false)
+    RegisterCommand(Config.ChainCommand, function() toggleClothes(7, "chain", "NoChainMale", "NoChainFemale") end, false)
 else
     debugPrint(Config.ChainCommand .. " command is disabled in the configuration.")
 end
 
 if Config.ShirtCommandEnabled then
-    RegisterCommand("shirt", function() toggleClothes(8, "shirt", "NoShirtMale", "NoShirtFemale") end, false)
+    RegisterCommand(Config.ShirtCommand, function() toggleClothes(8, "shirt", "NoShirtMale", "NoShirtFemale") end, false)
 else
     debugPrint(Config.ShirtCommand .. " command is disabled in the configuration.")
 end
 
 if Config.VestCommandEnabled then
-    RegisterCommand("vest", function() toggleClothes(9, "vest", "NoVestMale", "NoVestFemale") end, false)
+    RegisterCommand(Config.VestCommand, function() toggleClothes(9, "vest", "NoVestMale", "NoVestFemale") end, false)
 else
     debugPrint(Config.VestCommand .. " command is disabled in the configuration.")
 end
 
 if Config.DecalCommandEnabled then
-    RegisterCommand("decal", function() toggleClothes(10, "decal", "NoDecalMale", "NoDecalFemale") end, false)
+    RegisterCommand(Config.DecalCommand, function() toggleClothes(10, "decal", "NoDecalMale", "NoDecalFemale") end, false)
 else
     debugPrint(Config.DecalCommand .. " command is disabled in the configuration.")
 end
 
 if Config.JacketCommandEnabled then
-    RegisterCommand("jacket", function() toggleClothes(11, "jacket", "NoJacketMale", "NoJacketFemale") end, false)
+    RegisterCommand(Config.JacketCommand, function() toggleClothes(11, "jacket", "NoJacketMale", "NoJacketFemale") end, false)
 else
     debugPrint(Config.JacketCommand .. " command is disabled in the configuration.")
 end
 
 if Config.TopCommandEnabled then
-    RegisterCommand("top", function() toggleTop() end, false)
+    RegisterCommand(Config.TopCommand, function() toggleTop() end, false)
 else
     debugPrint(Config.TopCommand .. " command is disabled in the configuration.")
 end
 
-RegisterCommand("clothingmenu", function(source, args, rawCommand)
-    SetNuiFocus(true, true)
-    SendNUIMessage({
-        action = "openUI",
-        debug = Config.Debug
-    })
-end, false)
+if Config.ClothingMenuCommandEnabled then
+    RegisterCommand(Config.ClothingMenuCommand, function(source, args, rawCommand)
+        SetNuiFocus(true, true)
+        SendNUIMessage({
+            action = "openUI",
+            debug = Config.Debug
+        })
+    end, false)
+end
 
 RegisterNUICallback("closeUI", function(data, cb)
     SetNuiFocus(false, false)

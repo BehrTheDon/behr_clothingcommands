@@ -1,5 +1,13 @@
 Config = {}
 
+-- Configuration for Clothing Menu
+Config.ClothingMenuCommandEnabled = true  -- Command to toggle t/clothing
+Config.ClothingMenuCommand = "clothing"  -- Change the ingame command (Example. t/clothing)
+
+-- Animation Options
+Config.AnimDict = "clothingtie"
+Config.AnimName = "try_tie_positive_a"
+
 -- Accessories
 Config.HatCommandEnabled = true     -- Command to toggle t/hat
 Config.HatCommand = "hat"           -- Change the ingame command (Example. t/hat)
@@ -75,11 +83,7 @@ Config.BackpackCommand = "backpack"
 Config.NoBackpackMale = 0
 Config.NoBackpackFemale = 0
 
--- Animation Options
-Config.AnimDict = "clothingtie"
-Config.AnimName = "try_tie_positive_a"
-
 
 -- Developer Options
 Config.Debug = false                    -- Set to true to enable debug messages in the f8 console
-Config.VersionCheckEnabled = true      -- Enable version check by default
+Config.VersionCheckEnabled = true       -- Enable version check by default
