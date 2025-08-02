@@ -20,6 +20,8 @@ server_scripts {
 	'server/server.lua'
 }
 
+
+export 'toggleTop'         -- exports['behr_clothingcommands']:toggleTop()
 export 'toggleShirt'       -- exports['behr_clothingcommands']:toggleShirt()
 export 'toggleJacket'      -- exports['behr_clothingcommands']:toggleJacket()
 export 'togglePants'       -- exports['behr_clothingcommands']:togglePants()
