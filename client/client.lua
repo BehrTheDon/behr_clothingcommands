@@ -1,20 +1,4 @@
-local savedShirt = nil
-local savedPants = nil
-local savedJacket = nil
-local savedChain = nil
-local savedHair = nil
-local savedShoes = nil
-local savedBackpack = nil
-local savedArms = nil
-local savedMask = nil
-local savedVest = nil
-local savedDecal = nil
-local savedHat = nil
-local savedGlasses = nil
-local savedEar = nil
-local savedWatch = nil
-local savedBracelet = nil
-local savedTop = nil
+local savedClothing = {}
 
 function debugPrint(message)
     if Config.Debug then
@@ -65,15 +49,16 @@ function toggleHat()
 
 
     if propIndex ~= -1 then
-        savedHat = {
+        savedClothing[ped] = savedClothing[ped] or {}
+        savedClothing[ped].hat = {
             drawable = propIndex,
             texture = textureIndex
         }
         ClearPedProp(ped, 0)
         debugPrint("Hat removed.")
-    elseif savedHat then
-        SetPedPropIndex(ped, 0, savedHat.drawable, savedHat.texture, true)
-        savedHat = nil
+    elseif savedClothing[ped] and savedClothing[ped].hat then
+        SetPedPropIndex(ped, 0, savedClothing[ped].hat.drawable, savedClothing[ped].hat.texture, true)
+        savedClothing[ped].hat = nil
         debugPrint("Hat restored.")
     else
         debugPrint("No saved hat to restore.")
@@ -93,15 +78,16 @@ function toggleGlasses()
 
 
     if propIndex ~= -1 then
-        savedGlasses = {
+        savedClothing[ped] = savedClothing[ped] or {}
+        savedClothing[ped].glasses = {
             drawable = propIndex,
             texture = textureIndex
         }
         ClearPedProp(ped, 1)
         debugPrint("Glasses removed.")
-    elseif savedGlasses then
-        SetPedPropIndex(ped, 1, savedGlasses.drawable, savedGlasses.texture, true)
-        savedGlasses = nil
+    elseif savedClothing[ped] and savedClothing[ped].glasses then
+        SetPedPropIndex(ped, 1, savedClothing[ped].glasses.drawable, savedClothing[ped].glasses.texture, true)
+        savedClothing[ped].glasses = nil
         debugPrint("Glasses restored.")
     else
         debugPrint("No saved glasses to restore.")
@@ -121,15 +107,16 @@ function toggleEar()
 
 
     if propIndex ~= -1 then
-        savedEar = {
+        savedClothing[ped] = savedClothing[ped] or {}
+        savedClothing[ped].ear = {
             drawable = propIndex,
             texture = textureIndex
         }
         ClearPedProp(ped, 2)
         debugPrint("Ear removed.")
-    elseif savedEar then
-        SetPedPropIndex(ped, 2, savedEar.drawable, savedEar.texture, true)
-        savedEar = nil
+    elseif savedClothing[ped] and savedClothing[ped].ear then
+        SetPedPropIndex(ped, 2, savedClothing[ped].ear.drawable, savedClothing[ped].ear.texture, true)
+        savedClothing[ped].ear = nil
         debugPrint("Ear restored.")
     else
         debugPrint("No saved ear to restore.")
@@ -149,15 +136,16 @@ function toggleWatch()
 
 
     if propIndex ~= -1 then
-        savedWatch = {
+        savedClothing[ped] = savedClothing[ped] or {}
+        savedClothing[ped].watch = {
             drawable = propIndex,
             texture = textureIndex
         }
         ClearPedProp(ped, 6)
         debugPrint("Watch removed.")
-    elseif savedWatch then
-        SetPedPropIndex(ped, 6, savedWatch.drawable, savedWatch.texture, true)
-        savedWatch = nil
+    elseif savedClothing[ped] and savedClothing[ped].watch then
+        SetPedPropIndex(ped, 6, savedClothing[ped].watch.drawable, savedClothing[ped].watch.texture, true)
+        savedClothing[ped].watch = nil
         debugPrint("Watch restored.")
     else
         debugPrint("No saved watch to restore.")
@@ -177,20 +165,22 @@ function toggleBracelet()
 
 
     if propIndex ~= -1 then
-        savedBracelet = {
+        savedClothing[ped] = savedClothing[ped] or {}
+        savedClothing[ped].bracelet = {
             drawable = propIndex,
             texture = textureIndex
         }
         ClearPedProp(ped, 7)
         debugPrint("Bracelet removed.")
-    elseif savedBracelet then
-        SetPedPropIndex(ped, 7, savedBracelet.drawable, savedBracelet.texture, true)
-        savedBracelet = nil
+    elseif savedClothing[ped] and savedClothing[ped].bracelet then
+        SetPedPropIndex(ped, 7, savedClothing[ped].bracelet.drawable, savedClothing[ped].bracelet.texture, true)
+        savedClothing[ped].bracelet = nil
         debugPrint("Bracelet restored.")
     else
         debugPrint("No saved bracelet to restore.")
     end
 end
+
 
 function toggleTop()
     local ped = PlayerPedId()
@@ -209,11 +199,10 @@ function toggleTop()
 
     playClothingAnimation()
 
-
     if (pedModel == maleHash and currentDrawableJacket ~= Config.NoTopJacketMale)
     or (pedModel == femaleHash and currentDrawableJacket ~= Config.NoTopJacketFemale) then
-
-        savedTop = {
+        savedClothing[ped] = savedClothing[ped] or {}
+        savedClothing[ped].top = {
             drawableShirt = currentDrawableShirt,
             textureShirt = currentTextureShirt,
             drawableJacket = currentDrawableJacket,
@@ -222,7 +211,7 @@ function toggleTop()
             textureArms = currentTextureArms
         }
 
-        debugPrint("Saving current top state: " .. tostring(savedTop.drawableShirt) .. ", " .. tostring(savedTop.textureShirt)  .. ", " .. tostring(savedTop.drawableJacket) .. ", " .. tostring(savedTop.textureJacket) .. ", " .. tostring(savedTop.drawableArms) .. ", " .. tostring(savedTop.textureArms))
+        debugPrint("Saving current top state: " .. tostring(savedClothing[ped].top.drawableShirt) .. ", " .. tostring(savedClothing[ped].top.textureShirt)  .. ", " .. tostring(savedClothing[ped].top.drawableJacket) .. ", " .. tostring(savedClothing[ped].top.textureJacket) .. ", " .. tostring(savedClothing[ped].top.drawableArms) .. ", " .. tostring(savedClothing[ped].top.textureArms))
 
         if pedModel == maleHash then
             SetPedComponentVariation(ped, 8, Config.NoTopShirtMale, 0, 2)
@@ -237,11 +226,11 @@ function toggleTop()
 
             debugPrint("Set top for female model.")
         end
-    elseif savedTop then
-        SetPedComponentVariation(ped, 8, savedTop.drawableShirt, savedTop.textureShirt, 2)
-        SetPedComponentVariation(ped, 11, savedTop.drawableJacket, savedTop.textureJacket, 2)
-        SetPedComponentVariation(ped, 3, savedTop.drawableArms, savedTop.textureArms, 2)
-        savedTop = nil
+    elseif savedClothing[ped] and savedClothing[ped].top then
+        SetPedComponentVariation(ped, 8, savedClothing[ped].top.drawableShirt, savedClothing[ped].top.textureShirt, 2)
+        SetPedComponentVariation(ped, 11, savedClothing[ped].top.drawableJacket, savedClothing[ped].top.textureJacket, 2)
+        SetPedComponentVariation(ped, 3, savedClothing[ped].top.drawableArms, savedClothing[ped].top.textureArms, 2)
+        savedClothing[ped].top = nil
 
         debugPrint("Top restored.")
     end
@@ -260,13 +249,14 @@ function toggleMask()
 
 
     if currentDrawable ~= Config.NoMaskMale and currentDrawable ~= Config.NoMaskFemale then
-        savedMask = {
+        savedClothing[ped] = savedClothing[ped] or {}
+        savedClothing[ped].mask = {
             drawable = currentDrawable,
             texture = currentTexture
         }
 
-        debugPrint("Saving current mask state: " .. tostring(savedMask.drawable) .. ", " .. tostring(savedMask.texture))
-        
+        debugPrint("Saving current mask state: " .. tostring(savedClothing[ped].mask.drawable) .. ", " .. tostring(savedClothing[ped].mask.texture))
+
         if pedModel == GetHashKey("mp_m_freemode_01") then
             SetPedComponentVariation(ped, 1, Config.NoMaskMale, 0, 2)
 
@@ -276,9 +266,9 @@ function toggleMask()
 
             debugPrint("Set mask for female model.")
         end
-    elseif savedMask then
-        SetPedComponentVariation(ped, 1, savedMask.drawable, savedMask.texture, 2)
-        savedMask = nil
+    elseif savedClothing[ped] and savedClothing[ped].mask then
+        SetPedComponentVariation(ped, 1, savedClothing[ped].mask.drawable, savedClothing[ped].mask.texture, 2)
+        savedClothing[ped].mask = nil
 
         debugPrint("Mask restored.")
     end
@@ -297,13 +287,14 @@ function toggleHair()
 
 
     if currentDrawable ~= Config.NoHairMale and currentDrawable ~= Config.NoHairFemale then
-        savedHair = {
+        savedClothing[ped] = savedClothing[ped] or {}
+        savedClothing[ped].hair = {
             drawable = currentDrawable,
             texture = currentTexture
         }
 
-        debugPrint("Saving current hair state: " .. tostring(savedHair.drawable) .. ", " .. tostring(savedHair.texture))
-        
+        debugPrint("Saving current hair state: " .. tostring(savedClothing[ped].hair.drawable) .. ", " .. tostring(savedClothing[ped].hair.texture))
+
         if pedModel == GetHashKey("mp_m_freemode_01") then
             SetPedComponentVariation(ped, 2, Config.NoHairMale, 0, 2)
 
@@ -313,9 +304,9 @@ function toggleHair()
 
             debugPrint("Set hair for female model.")
         end
-    elseif savedHair then
-        SetPedComponentVariation(ped, 2, savedHair.drawable, savedHair.texture, 2)
-        savedHair = nil
+    elseif savedClothing[ped] and savedClothing[ped].hair then
+        SetPedComponentVariation(ped, 2, savedClothing[ped].hair.drawable, savedClothing[ped].hair.texture, 2)
+        savedClothing[ped].hair = nil
 
         debugPrint("Hair restored.")
     end
@@ -334,13 +325,14 @@ function toggleArms()
 
 
     if currentDrawable ~= Config.NoArmsMale and currentDrawable ~= Config.NoArmsFemale then
-        savedArms = {
+        savedClothing[ped] = savedClothing[ped] or {}
+        savedClothing[ped].arms = {
             drawable = currentDrawable,
             texture = currentTexture
         }
 
-        debugPrint("Saving current arms state: " .. tostring(savedArms.drawable) .. ", " .. tostring(savedArms.texture))
-        
+        debugPrint("Saving current arms state: " .. tostring(savedClothing[ped].arms.drawable) .. ", " .. tostring(savedClothing[ped].arms.texture))
+
         if pedModel == GetHashKey("mp_m_freemode_01") then
             SetPedComponentVariation(ped, 3, Config.NoArmsMale, 0, 2)
 
@@ -350,9 +342,9 @@ function toggleArms()
 
             debugPrint("Set arms for female model.")
         end
-    elseif savedArms then
-        SetPedComponentVariation(ped, 3, savedArms.drawable, savedArms.texture, 2)
-        savedArms = nil
+    elseif savedClothing[ped] and savedClothing[ped].arms then
+        SetPedComponentVariation(ped, 3, savedClothing[ped].arms.drawable, savedClothing[ped].arms.texture, 2)
+        savedClothing[ped].arms = nil
 
         debugPrint("Arms restored.")
     end
@@ -371,13 +363,14 @@ function togglePants()
 
 
     if currentDrawable ~= Config.NoPantsMale and currentDrawable ~= Config.NoPantsFemale then
-        savedPants = {
+        savedClothing[ped] = savedClothing[ped] or {}
+        savedClothing[ped].pants = {
             drawable = currentDrawable,
             texture = currentTexture
         }
 
-        debugPrint("Saving current pants state: " .. tostring(savedPants.drawable) .. ", " .. tostring(savedPants.texture))
-        
+        debugPrint("Saving current pants state: " .. tostring(savedClothing[ped].pants.drawable) .. ", " .. tostring(savedClothing[ped].pants.texture))
+
         if pedModel == GetHashKey("mp_m_freemode_01") then
             SetPedComponentVariation(ped, 4, Config.NoPantsMale, 0, 2)
 
@@ -387,9 +380,9 @@ function togglePants()
 
             debugPrint("Set pants for female model.")
         end
-    elseif savedPants then
-        SetPedComponentVariation(ped, 4, savedPants.drawable, savedPants.texture, 2)
-        savedPants = nil
+    elseif savedClothing[ped] and savedClothing[ped].pants then
+        SetPedComponentVariation(ped, 4, savedClothing[ped].pants.drawable, savedClothing[ped].pants.texture, 2)
+        savedClothing[ped].pants = nil
 
         debugPrint("Pants restored.")
     end
@@ -408,12 +401,13 @@ function toggleBackpack()
 
 
     if currentDrawable ~= Config.NoBackpackMale and currentDrawable ~= Config.NoBackpackFemale then
-        savedBackpack = {
+        savedClothing[ped] = savedClothing[ped] or {}
+        savedClothing[ped].backpack = {
             drawable = currentDrawable,
             texture = currentTexture
         }
 
-        debugPrint("Saving current backpack state: " .. tostring(savedBackpack.drawable) .. ", " .. tostring(savedBackpack.texture))
+        debugPrint("Saving current backpack state: " .. tostring(savedClothing[ped].backpack.drawable) .. ", " .. tostring(savedClothing[ped].backpack.texture))
 
         if pedModel == GetHashKey("mp_m_freemode_01") then
             SetPedComponentVariation(ped, 5, Config.NoBackpackMale, 0, 2)
@@ -424,9 +418,9 @@ function toggleBackpack()
 
             debugPrint("Set backpack for female model.")
         end
-    elseif savedBackpack then
-        SetPedComponentVariation(ped, 5, savedBackpack.drawable, savedBackpack.texture, 2)
-        savedBackpack = nil
+    elseif savedClothing[ped] and savedClothing[ped].backpack then
+        SetPedComponentVariation(ped, 5, savedClothing[ped].backpack.drawable, savedClothing[ped].backpack.texture, 2)
+        savedClothing[ped].backpack = nil
 
         debugPrint("Backpack restored.")
     end
@@ -445,13 +439,14 @@ function toggleShoes()
 
 
     if currentDrawable ~= Config.NoShoesMale and currentDrawable ~= Config.NoShoesFemale then
-        savedShoes = {
+        savedClothing[ped] = savedClothing[ped] or {}
+        savedClothing[ped].shoes = {
             drawable = currentDrawable,
             texture = currentTexture
         }
 
-        debugPrint("Saving current shoes state: " .. tostring(savedShoes.drawable) .. ", " .. tostring(savedShoes.texture))
-        
+        debugPrint("Saving current shoes state: " .. tostring(savedClothing[ped].shoes.drawable) .. ", " .. tostring(savedClothing[ped].shoes.texture))
+
         if pedModel == GetHashKey("mp_m_freemode_01") then
             SetPedComponentVariation(ped, 6, Config.NoShoesMale, 0, 2)
 
@@ -461,9 +456,9 @@ function toggleShoes()
 
             debugPrint("Set shoes for female model.")
         end
-    elseif savedShoes then
-        SetPedComponentVariation(ped, 6, savedShoes.drawable, savedShoes.texture, 2)
-        savedShoes = nil
+    elseif savedClothing[ped] and savedClothing[ped].shoes then
+        SetPedComponentVariation(ped, 6, savedClothing[ped].shoes.drawable, savedClothing[ped].shoes.texture, 2)
+        savedClothing[ped].shoes = nil
 
         debugPrint("Shoes restored.")
     end
@@ -482,13 +477,14 @@ function toggleChain()
 
 
     if currentDrawable ~= Config.NoChainMale and currentDrawable ~= Config.NoChainFemale then
-        savedChain = {
+        savedClothing[ped] = savedClothing[ped] or {}
+        savedClothing[ped].chain = {
             drawable = currentDrawable,
             texture = currentTexture
         }
 
-        debugPrint("Saving current chain state: " .. tostring(savedChain.drawable) .. ", " .. tostring(savedChain.texture))
-        
+        debugPrint("Saving current chain state: " .. tostring(savedClothing[ped].chain.drawable) .. ", " .. tostring(savedClothing[ped].chain.texture))
+
         if pedModel == GetHashKey("mp_m_freemode_01") then
             SetPedComponentVariation(ped, 7, Config.NoChainMale, 0, 2)
 
@@ -498,9 +494,9 @@ function toggleChain()
 
             debugPrint("Set chain for female model.")
         end
-    elseif savedChain then
-        SetPedComponentVariation(ped, 7, savedChain.drawable, savedChain.texture, 2)
-        savedChain = nil
+    elseif savedClothing[ped] and savedClothing[ped].chain then
+        SetPedComponentVariation(ped, 7, savedClothing[ped].chain.drawable, savedClothing[ped].chain.texture, 2)
+        savedClothing[ped].chain = nil
 
         debugPrint("Chain restored.")
     end
@@ -519,13 +515,14 @@ function toggleShirt()
 
 
     if currentDrawable ~= Config.NoShirtMale and currentDrawable ~= Config.NoShirtFemale then
-        savedShirt = {
+        savedClothing[ped] = savedClothing[ped] or {}
+        savedClothing[ped].shirt = {
             drawable = currentDrawable,
             texture = currentTexture
         }
 
-        debugPrint("Saving current shirt state: " .. tostring(savedShirt.drawable) .. ", " .. tostring(savedShirt.texture))
-        
+        debugPrint("Saving current shirt state: " .. tostring(savedClothing[ped].shirt.drawable) .. ", " .. tostring(savedClothing[ped].shirt.texture))
+
         if pedModel == GetHashKey("mp_m_freemode_01") then
             SetPedComponentVariation(ped, 8, Config.NoShirtMale, 0, 2)
 
@@ -535,9 +532,9 @@ function toggleShirt()
 
             debugPrint("Set shirt for female model.")
         end
-    elseif savedShirt then
-        SetPedComponentVariation(ped, 8, savedShirt.drawable, savedShirt.texture, 2)
-        savedShirt = nil
+    elseif savedClothing[ped] and savedClothing[ped].shirt then
+        SetPedComponentVariation(ped, 8, savedClothing[ped].shirt.drawable, savedClothing[ped].shirt.texture, 2)
+        savedClothing[ped].shirt = nil
 
         debugPrint("Shirt restored.")
     end
@@ -556,12 +553,13 @@ function toggleVest()
 
 
     if currentDrawable ~= Config.NoVestMale and currentDrawable ~= Config.NoVestFemale then
-        savedVest = {
+        savedClothing[ped] = savedClothing[ped] or {}
+        savedClothing[ped].vest = {
             drawable = currentDrawable,
             texture = currentTexture
         }
 
-        debugPrint("Saving current vest state: " .. tostring(savedVest.drawable) .. ", " .. tostring(savedVest.texture))
+        debugPrint("Saving current vest state: " .. tostring(savedClothing[ped].vest.drawable) .. ", " .. tostring(savedClothing[ped].vest.texture))
 
         if pedModel == GetHashKey("mp_m_freemode_01") then
             SetPedComponentVariation(ped, 9, Config.NoVestMale, 0, 2)
@@ -572,10 +570,10 @@ function toggleVest()
 
             debugPrint("Set vest for female model.")
         end
-    elseif savedVest then
-        SetPedComponentVariation(ped, 9, savedVest.drawable, savedVest.texture, 2)
-        savedVest = nil
-        
+    elseif savedClothing[ped] and savedClothing[ped].vest then
+        SetPedComponentVariation(ped, 9, savedClothing[ped].vest.drawable, savedClothing[ped].vest.texture, 2)
+        savedClothing[ped].vest = nil
+
         debugPrint("Vest restored.")
     end
 end
@@ -593,18 +591,28 @@ function toggleDecal()
 
 
     if currentDrawable ~= Config.NoDecalMale and currentDrawable ~= Config.NoDecalFemale then
-        savedDecal = {
+        savedClothing[ped] = savedClothing[ped] or {}
+        savedClothing[ped].decal = {
             drawable = currentDrawable,
             texture = currentTexture
         }
+
+        debugPrint("Saving current decal state: " .. tostring(savedClothing[ped].decal.drawable) .. ", " .. tostring(savedClothing[ped].decal.texture))
+
         if pedModel == GetHashKey("mp_m_freemode_01") then
             SetPedComponentVariation(ped, 10, Config.NoDecalMale, 0, 2)
+
+            debugPrint("Set decal for male model.")
         elseif pedModel == GetHashKey("mp_f_freemode_01") then
             SetPedComponentVariation(ped, 10, Config.NoDecalFemale, 0, 2)
+
+            debugPrint("Set decal for female model.")
         end
-    elseif savedDecal then
-        SetPedComponentVariation(ped, 10, savedDecal.drawable, savedDecal.texture, 2)
-        savedDecal = nil
+    elseif savedClothing[ped] and savedClothing[ped].decal then
+        SetPedComponentVariation(ped, 10, savedClothing[ped].decal.drawable, savedClothing[ped].decal.texture, 2)
+        savedClothing[ped].decal = nil
+
+        debugPrint("Decal restored.")
     end
 end
 
@@ -621,12 +629,13 @@ function toggleJacket()
 
 
     if currentDrawable ~= Config.NoJacketMale and currentDrawable ~= Config.NoJacketFemale then
-        savedJacket = {
+        savedClothing[ped] = savedClothing[ped] or {}
+        savedClothing[ped].jacket = {
             drawable = currentDrawable,
             texture = currentTexture
         }
 
-        debugPrint("Saving current jacket state: " .. tostring(savedJacket.drawable) .. ", " .. tostring(savedJacket.texture))
+        debugPrint("Saving current jacket state: " .. tostring(savedClothing[ped].jacket.drawable) .. ", " .. tostring(savedClothing[ped].jacket.texture))
 
         if pedModel == GetHashKey("mp_m_freemode_01") then
             SetPedComponentVariation(ped, 11, Config.NoJacketMale, 0, 2)
@@ -637,9 +646,9 @@ function toggleJacket()
 
             debugPrint("Set jacket for female model.")
         end
-    elseif savedJacket then
-        SetPedComponentVariation(ped, 11, savedJacket.drawable, savedJacket.texture, 2)
-        savedJacket = nil
+    elseif savedClothing[ped] and savedClothing[ped].jacket then
+        SetPedComponentVariation(ped, 11, savedClothing[ped].jacket.drawable, savedClothing[ped].jacket.texture, 2)
+        savedClothing[ped].jacket = nil
 
         debugPrint("Jacket restored.")
     end
@@ -651,7 +660,7 @@ if Config.ShirtCommandEnabled then
         debugPrint("Shirt toggled.")
     end, false)
 else
-    debugPrint("Shirt command is disabled in the configuration.")
+    debugPrint(Config.ShirtCommand .. " command is disabled in the configuration.")
 end
 
 if Config.JacketCommandEnabled then
@@ -660,7 +669,7 @@ if Config.JacketCommandEnabled then
         debugPrint("Jacket toggled.")
     end, false)
 else
-    debugPrint("Jacket command is disabled in the configuration.")
+    debugPrint(Config.JacketCommand .. " command is disabled in the configuration.")
 end
 
 if Config.BackpackCommandEnabled then
@@ -669,7 +678,7 @@ if Config.BackpackCommandEnabled then
         debugPrint("Backpack toggled.")
     end, false)
 else
-    debugPrint("Backpack command is disabled in the configuration.")
+    debugPrint(Config.BackpackCommand .. " command is disabled in the configuration.")
 end
 
 if Config.PantsCommandEnabled then
@@ -678,7 +687,7 @@ if Config.PantsCommandEnabled then
         debugPrint("Pants toggled.")
     end, false)
 else
-    debugPrint("Pants command is disabled in the configuration.")
+    debugPrint(Config.PantsCommand .. " command is disabled in the configuration.")
 end
 
 if Config.ArmsCommandEnabled then
@@ -687,7 +696,7 @@ if Config.ArmsCommandEnabled then
         debugPrint("Arms toggled.")
     end, false)
 else
-    debugPrint("Arms command is disabled in the configuration.")
+    debugPrint(Config.ArmsCommand .. " command is disabled in the configuration.")
 end
 
 if Config.ShoesCommandEnabled then
@@ -696,7 +705,7 @@ if Config.ShoesCommandEnabled then
         debugPrint("Shoes toggled.")
     end, false)
 else
-    debugPrint("Shoes command is disabled in the configuration.")
+    debugPrint(Config.ShoesCommand .. " command is disabled in the configuration.")
 end
 
 if Config.ChainCommandEnabled then
@@ -705,7 +714,7 @@ if Config.ChainCommandEnabled then
         debugPrint("Chain toggled.")
     end, false)
 else
-    debugPrint("Chain command is disabled in the configuration.")
+    debugPrint(Config.ChainCommand .. " command is disabled in the configuration.")
 end
 
 
@@ -715,7 +724,7 @@ if Config.HairCommandEnabled then
         debugPrint("Hair toggled.")
     end, false)
 else
-    debugPrint("Hair command is disabled in the configuration.")
+    debugPrint(Config.HairCommand .. " command is disabled in the configuration.")
 end
 
 if Config.MaskCommandEnabled then
@@ -724,7 +733,7 @@ if Config.MaskCommandEnabled then
         debugPrint("Mask toggled.")
     end, false)
 else
-    debugPrint("Mask command is disabled in the configuration.")
+    debugPrint(Config.MaskCommand .. " command is disabled in the configuration.")
 end
 
 if Config.VestCommandEnabled then
@@ -733,7 +742,7 @@ if Config.VestCommandEnabled then
         debugPrint("Vest toggled.")
     end, false)
 else
-    debugPrint("Vest command is disabled in the configuration.")
+    debugPrint(Config.VestCommand .. " command is disabled in the configuration.")
 end
 
 if Config.DecalCommandEnabled then
@@ -742,7 +751,7 @@ if Config.DecalCommandEnabled then
         debugPrint("Decal toggled.")
     end, false)
 else
-    debugPrint("Decal command is disabled in the configuration.")
+    debugPrint(Config.DecalCommand .. " command is disabled in the configuration.")
 end
 
 if Config.HatCommandEnabled then
@@ -751,7 +760,7 @@ if Config.HatCommandEnabled then
         debugPrint("Hat toggled.")
     end, false)
 else
-    debugPrint("Hat command is disabled in the configuration.")
+    debugPrint(Config.HatCommand .. " command is disabled in the configuration.")
 end
 
 if Config.GlassesCommandEnabled then
@@ -760,7 +769,7 @@ if Config.GlassesCommandEnabled then
         debugPrint("Glasses toggled.")
     end, false)
 else
-    debugPrint("Glasses command is disabled in the configuration.")
+    debugPrint(Config.GlassesCommand .. " command is disabled in the configuration.")
 end
 
 if Config.EarCommandEnabled then
@@ -769,7 +778,7 @@ if Config.EarCommandEnabled then
         debugPrint("Ear toggled.")
     end, false)
 else
-    debugPrint("Ear command is disabled in the configuration.")
+    debugPrint(Config.EarCommand .. " command is disabled in the configuration.")
 end
 
 if Config.WatchCommandEnabled then
@@ -778,7 +787,7 @@ if Config.WatchCommandEnabled then
         debugPrint("Watch toggled.")
     end, false)
 else
-    debugPrint("Watch command is disabled in the configuration.")
+    debugPrint(Config.WatchCommand .. " command is disabled in the configuration.")
 end
 
 if Config.BraceletCommandEnabled then
@@ -787,7 +796,7 @@ if Config.BraceletCommandEnabled then
         debugPrint("Bracelet toggled.")
     end, false)
 else
-    debugPrint("Bracelet command is disabled in the configuration.")
+    debugPrint(Config.BraceletCommand .. " command is disabled in the configuration.")
 end
 
 if Config.TopCommandEnabled then
@@ -796,5 +805,5 @@ if Config.TopCommandEnabled then
         debugPrint("Top toggled.")
     end, false)
 else
-    debugPrint("Top command is disabled in the configuration.")
+    debugPrint(Config.TopCommand .. " command is disabled in the configuration.")
 end
