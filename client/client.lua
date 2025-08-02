@@ -223,6 +223,67 @@ else
     debugPrint(Config.TopCommand .. " command is disabled in the configuration.")
 end
 
+RegisterCommand("clothingmenu", function(source, args, rawCommand)
+    SetNuiFocus(true, true)
+    SendNUIMessage({
+        action = "openUI",
+        debug = Config.Debug
+    })
+end, false)
+
+RegisterNUICallback("closeUI", function(data, cb)
+    SetNuiFocus(false, false)
+    cb("ok")
+end)
+
+RegisterNUICallback("toggleClothing", function(data, cb)
+    local slot = data.slot
+
+    -- Props
+    if slot == "hat" then
+        toggleProp(0, "hat")
+    elseif slot == "glasses" then
+        toggleProp(1, "glasses")
+    elseif slot == "ear" then
+        toggleProp(2, "ear")
+    elseif slot == "watch" then
+        toggleProp(6, "watch")
+    elseif slot == "bracelet" then
+        toggleProp(7, "bracelet")
+    -- Clothing
+    elseif slot == "mask" then
+        toggleClothes(1, "mask", "NoMaskMale", "NoMaskFemale")
+    elseif slot == "hair" then
+        toggleClothes(2, "hair", "NoHairMale", "NoHairFemale")
+    elseif slot == "arms" then
+        toggleClothes(3, "arms", "FullBodyMale", "FullBodyFemale")
+    elseif slot == "pants" then
+        toggleClothes(4, "pants", "NoPantsMale", "NoPantsFemale")
+    elseif slot == "backpack" then
+        toggleClothes(5, "backpack", "NoBackpackMale", "NoBackpackFemale")
+    elseif slot == "shoes" then
+        toggleClothes(6, "shoes", "NoShoesMale", "NoShoesFemale")
+    elseif slot == "chain" then
+        toggleClothes(7, "chain", "NoChainMale", "NoChainFemale")
+    elseif slot == "shirt" then
+        toggleClothes(8, "shirt", "NoShirtMale", "NoShirtFemale")
+    elseif slot == "vest" then
+        toggleClothes(9, "vest", "NoVestMale", "NoVestFemale")
+    elseif slot == "decal" then
+        toggleClothes(10, "decal", "NoDecalMale", "NoDecalFemale")
+    elseif slot == "jacket" then
+        toggleClothes(11, "jacket", "NoJacketMale", "NoJacketFemale")
+    elseif slot == "top" then
+        toggleTop()
+    else
+        debugPrint("Unknown clothing slot: " .. tostring(slot))
+    end
+
+    cb("ok")
+end)
+
+
+
 if Config.Debug then
     CreateThread(function()
         while true do

@@ -1,0 +1,36 @@
+*{
+    font-family: system-ui;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+    border-radius: 15px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px 10px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, 
+    transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #39833c;
+    transform: scale(1.08);
+}
