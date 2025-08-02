@@ -17,6 +17,16 @@ Config.BraceletCommandEnabled = true
 Config.BraceletCommand = "bracelet"
 
 --Clothing
+Config.TopCommandEnabled = true      -- Command to toggle t/top
+Config.TopCommand = "top"            -- Change the ingame command (Example. t/top)
+Config.NoTopShirtMale = 15                -- Go Ingame and check the clothing menu for the correct number, then Input that number here
+Config.NoTopShirtFemale = 15              -- Go Ingame and check the clothing menu for the correct number, then Input that number here
+Config.NoTopJacketMale = 15               -- Go Ingame and check the clothing menu for the correct number, then Input that number here
+Config.NoTopJacketFemale = 15             -- Go Ingame and check the clothing menu for the correct number, then Input that number here
+Config.FullBodyMale = 15              -- Go Ingame and check the clothing menu for the correct number, then Input that number here
+Config.FullBodyFemale = 15            -- Go Ingame and check the clothing menu for the correct number, then Input that number here
+
+
 Config.HairCommandEnabled = true   -- Command to toggle t/hair
 Config.HairCommand = "hair"        -- Change the ingame command (Example. t/hair)
 Config.NoHairMale = 0              -- Go Ingame and check the clothing menu for the correct number, then Input that number here

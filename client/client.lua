@@ -14,6 +14,7 @@ local savedGlasses = nil
 local savedEar = nil
 local savedWatch = nil
 local savedBracelet = nil
+local savedTop = nil
 
 function debugPrint(message)
     if Config.Debug then
@@ -191,7 +192,60 @@ function toggleBracelet()
     end
 end
 
+function toggleTop()
+    local ped = PlayerPedId()
+    local maleHash = GetHashKey("mp_m_freemode_01")
+    local femaleHash = GetHashKey("mp_f_freemode_01")
+    local pedModel = GetEntityModel(ped)
 
+    if pedModel ~= maleHash and pedModel ~= femaleHash then return end
+
+    local currentDrawableShirt = GetPedDrawableVariation(ped, 8)
+    local currentTextureShirt = GetPedTextureVariation(ped, 8)
+    local currentDrawableJacket = GetPedDrawableVariation(ped, 11)
+    local currentTextureJacket = GetPedTextureVariation(ped, 11)
+    local currentDrawableArms = GetPedDrawableVariation(ped, 3)
+    local currentTextureArms = GetPedTextureVariation(ped, 3)
+
+    playClothingAnimation()
+
+
+    if (pedModel == maleHash and currentDrawableJacket ~= Config.NoTopJacketMale)
+    or (pedModel == femaleHash and currentDrawableJacket ~= Config.NoTopJacketFemale) then
+
+        savedTop = {
+            drawableShirt = currentDrawableShirt,
+            textureShirt = currentTextureShirt,
+            drawableJacket = currentDrawableJacket,
+            textureJacket = currentTextureJacket,
+            drawableArms = currentDrawableArms,
+            textureArms = currentTextureArms
+        }
+
+        debugPrint("Saving current top state: " .. tostring(savedTop.drawableShirt) .. ", " .. tostring(savedTop.textureShirt)  .. ", " .. tostring(savedTop.drawableJacket) .. ", " .. tostring(savedTop.textureJacket) .. ", " .. tostring(savedTop.drawableArms) .. ", " .. tostring(savedTop.textureArms))
+
+        if pedModel == maleHash then
+            SetPedComponentVariation(ped, 8, Config.NoTopShirtMale, 0, 2)
+            SetPedComponentVariation(ped, 11, Config.NoTopJacketMale, 0, 2)
+            SetPedComponentVariation(ped, 3, Config.FullBodyMale, 0, 2)
+
+            debugPrint("Set top for male model.")
+        elseif pedModel == femaleHash then
+            SetPedComponentVariation(ped, 8, Config.NoTopShirtFemale, 0, 2)
+            SetPedComponentVariation(ped, 11, Config.NoTopJacketFemale, 0, 2)
+            SetPedComponentVariation(ped, 3, Config.FullBodyFemale, 0, 2)
+
+            debugPrint("Set top for female model.")
+        end
+    elseif savedTop then
+        SetPedComponentVariation(ped, 8, savedTop.drawableShirt, savedTop.textureShirt, 2)
+        SetPedComponentVariation(ped, 11, savedTop.drawableJacket, savedTop.textureJacket, 2)
+        SetPedComponentVariation(ped, 3, savedTop.drawableArms, savedTop.textureArms, 2)
+        savedTop = nil
+
+        debugPrint("Top restored.")
+    end
+end
 
 function toggleMask()
     local ped = PlayerPedId()
@@ -734,4 +788,13 @@ if Config.BraceletCommandEnabled then
     end, false)
 else
     debugPrint("Bracelet command is disabled in the configuration.")
+end
+
+if Config.TopCommandEnabled then
+    RegisterCommand(Config.TopCommand, function()
+        toggleTop()
+        debugPrint("Top toggled.")
+    end, false)
+else
+    debugPrint("Top command is disabled in the configuration.")
 end
