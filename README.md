@@ -49,24 +49,25 @@ Config.NoShirtFemale = 15 -- Drawable Female index for "no shirt"
 
 Here are the default toggle commands (can be changed in config):
 
-| Command   | Item Slot          |
-| --------- | ------------------ |
-| /hat      | Hat                |
-| /glasses  | Glasses            |
-| /ear      | Earrings           |
-| /watch    | Watch              |
-| /bracelet | Bracelet           |
-| /hair     | Hair               |
-| /decal    | Decals/Tattoos     |
-| /chain    | Chain              |
-| /mask     | Mask               |
-| /vest     | Vest               |
-| /shoes    | Shoes              |
-| /shirt    | Shirt (undershirt) |
-| /arms     | Arms (torso)       |
-| /jacket   | Jacket             |
-| /pants    | Pants              |
-| /backpack | Backpack           |
+| Command   | Item Slot                             |
+| --------- | ------------------                    |
+| /top      | Removes Jacket and Shirt, Adds Body   |
+| /hat      | Hat                                   |
+| /glasses  | Glasses                               |
+| /ear      | Earrings                              |
+| /watch    | Watch                                 |
+| /bracelet | Bracelet                              |
+| /hair     | Hair                                  |
+| /decal    | Decals/Tattoos                        |
+| /chain    | Chain                                 |
+| /mask     | Mask                                  |
+| /vest     | Vest                                  |
+| /shoes    | Shoes                                 |
+| /shirt    | Shirt (undershirt)                    |
+| /arms     | Arms (torso)                          |
+| /jacket   | Jacket                                |
+| /pants    | Pants                                 |
+| /backpack | Backpack                              |
 
 ✅ Only works for freemode male/female peds (`mp_m_freemode_01`, `mp_f_freemode_01`)
 
@@ -77,6 +78,7 @@ Here are the default toggle commands (can be changed in config):
 Use these in other scripts to toggle clothing directly:
 
 ```lua
+exports['behr_clothingcommands']:toggleTop()
 exports['behr_clothingcommands']:toggleShirt()
 exports['behr_clothingcommands']:toggleJacket()
 exports['behr_clothingcommands']:togglePants()
