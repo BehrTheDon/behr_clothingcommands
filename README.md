@@ -96,6 +96,8 @@ exports['behr_clothingcommands']:toggleProp(6, "watch")     -- Example for toggl
 exports['behr_clothingcommands']:toggleProp(7, "bracelet")  -- Example for toggling a bracelet
 ```
 
+---
+
 ```lua
 -- Clothing Exports
 exports['behr_clothingcommands']:toggleTop()
